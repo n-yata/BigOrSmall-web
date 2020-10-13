@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Big or Small</title>
+    <link rel="stylesheet" href="resources/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="resources/js/index.js"></script>
+</head>
+<body>
+
+    <div id="info">
+        <p>*****チップ枚数とカード*****</p>
+        <div id="userInfo"></div>
+        <p>*************************</p>
+    </div>
+
+    <div id="choiseBetChip">
+        <p>■BET枚数選択</p>
+        <p>BETするチップ枚数を入力してください(最低1〜最大20)</p>
+        <input type="number" id="betChip" name="betChip" min="1" max="20" />
+        <div id="betErrorMsg" style="color: red"></div>
+    </div>
+    <div id="choiseBigSmall">
+        <p>■Big or Small選択</p>
+        <div id="nowCard"></div>
+        <p>
+            <input type="radio" name="bigOrSmall" value="big" checked="checked">big
+            <input type="radio" name="bigOrSmall" value="small">small
+        </p>
+        <p>
+            <input type="button" id="submitBigOrSmall" value="決定">
+        </p>
+    </div>
+
+    <div id="result">
+        <p>*******Big or Small*******</p>
+        <div id="resultInfo"></div>
+        <p>**************************</p>
+        <div id="compareResult"></div>
+    </div>
+
+    <div id="choiseDoubleUp">
+        <p>
+            <input type="radio" name="doubleUp" value="yes" checked="checked">Yes
+            <input type="radio" name="doubleUp" value="no">No
+        </p>
+        <p>
+            <input type="button" id="submitDoubleUp" value="決定">
+        </p>
+    </div>
+
+    <div id="choiseContinue">
+        <p>[ゲームを続けますか？]</p>
+        <p>
+            <input type="radio" name="continue" value="yes" checked="checked">Yes
+            <input type="radio" name="continue" value="no">No
+        </p>
+        <p>
+            <input type="button" id="submitContinue" value="決定">
+        </p>
+    </div>
+
+    <div id="gameOver">
+        <div id="noChip"></div>
+        <p>GAME OVER</p>
+        <a href="">最初からやりなおす</a>
+    </div>
+</body>
+</html>
