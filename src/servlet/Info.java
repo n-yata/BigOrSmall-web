@@ -12,21 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.UserInfo;
+import model.InfoLogic;
 import util.JsonConvertUtil;
 
 /**
  * Servlet implementation class Info
+ * ユーザー情報の表示サーブレット
  */
 @WebServlet("/Info")
 public class Info extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Info() {
-        super();
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,41 +32,39 @@ public class Info extends HttpServlet {
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 
+        // セッションにユーザー情報なければ新規作成
         if(userInfo == null) {
-            // ユーザー情報を生成
             userInfo = new UserInfo();
         }
 
-        boolean gameOver = false;
+        InfoLogic logic = new InfoLogic();
 
-        // チップ枚数が1以上またはベット枚数が1以上であればゲーム継続
-        if(userInfo.getChip().getSum() > 0 || userInfo.getBet() > 0) {
+        // ゲームオーバーの判定
+        boolean gameOver = logic.executeGameOver(userInfo);
 
+        if(!gameOver) {
             // ユーザー情報をセッションスコープに保存
             session.setAttribute("userInfo", userInfo);
-
-            // ゲームオーバーフラグをオフ
-            gameOver = false;
-
-        // ゲームオーバー
         }else {
             // セッション情報の破棄
             session.invalidate();
-
-            // ゲームオーバーフラグをオン
-            gameOver = true;
         }
 
-        String chip = userInfo.getChip().toString();
-        int sumChip = userInfo.getChip().getSum();
-        String card = userInfo.getPrev().toString();
+        // ゲームクリアの判定
+        boolean gameClear = logic.executeGameClear(userInfo);
+
+        if(gameClear) {
+            // セッション情報の破棄
+            session.invalidate();
+        }
 
         // 戻り値用のオブジェクト作成
         Map<String, Object> resMap = new HashMap<>();
-        resMap.put("chip", chip);
-        resMap.put("sumChip", sumChip);
-        resMap.put("card", card);
+        resMap.put("chip", userInfo.getChip().toString());
+        resMap.put("sumChip", userInfo.getChip().getSum());
+        resMap.put("card", userInfo.getPrev().toString());
         resMap.put("gameOver", gameOver);
+        resMap.put("gameClear", gameClear);
 
         // JSONを戻す
         JsonConvertUtil.convertToJson(resMap, response);

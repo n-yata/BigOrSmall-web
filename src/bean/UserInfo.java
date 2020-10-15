@@ -1,13 +1,23 @@
 package bean;
 
+/**
+ * ユーザー情報Bean
+ * @author yata1
+ */
 public class UserInfo {
+    /** チップ枚数 */
     private Chip chip;
-    private Card prev; // 先に引いたカード
-    private Card follow; // 後に引いたカード
+    /** 先に引いたカード */
+    private Card prev;
+    /** 後に引いたカード */
+    private Card follow;
+    /** 山札 */
     private Trump trump;
+    /** ベット枚数 */
     private int bet;
-    private int bs; // Big = 0, Small = 1
+    /** Big or Smallの選択情報 */
     private String bigSmall;
+    /** ダブルアップの選択情報 */
     private boolean doubleUp;
 
     public UserInfo() {
@@ -48,12 +58,7 @@ public class UserInfo {
     public void setBet(int bet) {
         this.bet = bet;
     }
-    public int getBs() {
-        return bs;
-    }
-    public void setBs(int bs) {
-        this.bs = bs;
-    }
+
     public String getBigSmall() {
         return bigSmall;
     }

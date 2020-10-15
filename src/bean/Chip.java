@@ -1,10 +1,21 @@
 package bean;
 
+/**
+ * 所持チップのBeanクラス
+ * @author yata1
+ */
 public class Chip {
+    /** 10チップの枚数 */
 	private int chip_10;
+	/** 1チップの枚数 */
 	private int chip_1;
+	/** 合計チップ枚数 */
 	private int sum;
 
+	/**
+	 * コンストラクタメソッド
+	 * @param sum
+	 */
 	public Chip(int sum) {
 		this.sum = sum;
 		this.chip_10 = sum / 10;
@@ -36,6 +47,6 @@ public class Chip {
 	}
 
 	public String toString() {
-		return "保有点" + sum + "([10]:" + chip_10 + "枚" + "[1]:" + chip_1 + "枚)";
+		return "チップ枚数" + sum + "([10]:" + chip_10 + "枚" + "[1]:" + chip_1 + "枚)";
 	}
 }

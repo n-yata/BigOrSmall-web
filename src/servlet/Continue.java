@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.UserInfo;
+import model.ContinueLogic;
 import util.JsonConvertUtil;
 
 /**
@@ -38,29 +39,24 @@ public class Continue extends HttpServlet {
 
         // 送信されたJSONの取得
         Map<String, String> reqMap = JsonConvertUtil.convertToObject(request);
-
         String continueStr = reqMap.get("continue");
 
-        // ゲーム終了フラグ
-        boolean exitFlg = false;
+        ContinueLogic logic = new ContinueLogic();
 
-        if(continueStr.equals("yes")) {
-            exitFlg = false;
-            // 新たなデッキを作成しトランプを引き直す
-            userInfo.getTrump().createDeck();
-            userInfo.setPrev(userInfo.getTrump().draw());
+        // ゲーム継続判定の確認
+        boolean continueFlg = logic.execute(userInfo, continueStr);
 
+        if(continueFlg) {
             // ユーザー情報をセッションスコープに保存
             session.setAttribute("userInfo", userInfo);
         }else {
-            exitFlg = true;
             // セッション情報の破棄
             session.invalidate();
         }
 
         // 戻り値用のオブジェクト作成
         Map<String, Object> resMap = new HashMap<>();
-        resMap.put("exitFlg", exitFlg);
+        resMap.put("continueFlg", continueFlg);
 
         // JSONを戻す
         JsonConvertUtil.convertToJson(resMap, response);

@@ -1,9 +1,20 @@
 package bean;
 
+/**
+ * トランプカードのBeanクラス
+ * @author yata1
+ */
 public class Card {
+    /** カードマーク */
 	private CardMark mark;
+	/** カードナンバー */
 	private int number;
 
+	/**
+	 * コンストラクタメソッド
+	 * @param mark
+	 * @param number
+	 */
 	public Card(CardMark mark, int number) {
 		this.mark = mark;
 		this.number = number;

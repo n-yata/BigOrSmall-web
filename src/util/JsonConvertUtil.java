@@ -13,13 +13,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- *
+ * JSONファイルとJavaオブジェクトの変換をするユーティリティ
  * @author yata1
  *
  */
 public class JsonConvertUtil {
     /**
-     *
+     * JSON→オブジェクトに変換する処理
      * @param request
      * @return
      * @throws ServletException
@@ -39,7 +39,7 @@ public class JsonConvertUtil {
     }
 
     /**
-     *
+     * オブジェクト→JSONに変換する処理
      * @param resMap
      * @param response
      * @throws ServletException

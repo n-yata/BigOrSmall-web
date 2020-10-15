@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Big or Small</title>
-    <link rel="stylesheet" href="resources/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="resources/js/index.js"></script>
+    <link rel="stylesheet" href="resources/css/style.css" />
 </head>
 <body>
 
@@ -19,7 +19,7 @@
         <p>■BET枚数選択</p>
         <p>BETするチップ枚数を入力してください(最低1〜最大20)</p>
         <input type="number" id="betChip" name="betChip" min="1" max="20" />
-        <div id="betErrorMsg" style="color: red"></div>
+        <div id="betErrorMsg"></div>
     </div>
     <div id="choiseBigSmall">
         <p>■Big or Small選択</p>
@@ -64,6 +64,12 @@
     <div id="gameOver">
         <div id="noChip"></div>
         <p>GAME OVER</p>
+        <a href="">最初からやりなおす</a>
+    </div>
+
+    <div id="congraturation">
+        <p>チップが500枚以上になりました。あなたの勝ちです！！</p>
+        <img src="resources/image/congraturation.jpg" alt="congraturation"><br/>
         <a href="">最初からやりなおす</a>
     </div>
 </body>
